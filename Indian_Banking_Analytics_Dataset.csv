@@ -1,5 +1,8 @@
-Total Transaction_Amount,,Total Loan_Amount,,Count Acount Type,,,,,Transaction_ID,Customer_ID,Customer_Name,Gender,Age,Occupation,Customer_Income_Group,Annual_Income_INR,Account_Type,Bank_Name,Branch,Region,City,Transaction_Date,Transaction_Type,Transaction_Amount,Credit_Score,Loan_Type,Loan_Amount,Loan_Status,Fraud_Flag
-510751660.8,,8760690000,,Salary,Saving,Fixed Deposit,Current,,TXN0003375,CUST03401,Jai Singh,Male,74,Business Owner,Low (<3L),2646500,Salary,HDFC Bank,Aizawl Branch 2,North-East,Aizawl,45072,RTGS,153749.85,326,0,0,Not Applied,No
-,,,,1985,5062,989,1964,,TXN0001568,CUST00746,Yatan Barad,Male,70,Unemployed,Low (<3L),504900,Saving,SBI,Chandigarh Branch 1,North,Chandigarh,44571,Cheque,218506.73,351,0,0,Not Applied,No
-,,,,,,,,,TXN0002384,CUST00400,Zansi Roy,Female,31,Student,Low (<3L),2132900,Saving,SBI,Indore Branch 2,Central,Indore,44664,RTGS,218900.6,561,0,0,Not Applied,No
-,,,,,,,,,TXN0007143,CUST01950,Gauri Mukherjee,Female,41,Student,Low (<3L),1745800,Saving,Kotak Mahindra Bank,Jaipur Branch 2,North,Jaipur,44988,UPI,67029.24,488,Car Loan,2514000,Rejected,No
+Occupation,(All)
+,
+Row Labels,Sum of Loan_Amount
+Current,1697982000
+Fixed Deposit,858975000
+Salary,1767351000
+Saving,4436382000
+Grand Total,8760690000
