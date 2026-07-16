@@ -31,4 +31,11 @@ round(sum(Transaction_Amount) over (order by Transaction_Date),2)as runnig_sum
 from bank_analysis
 where Transaction_Date between '2022-01-01' and '2022-12-31';
 
-
+select * from
+(select Customer_Name,Transaction_Type,sum(Transaction_Amount) as total_Transaction_Amount,
+		dense_rank() over(partition by Transaction_Type order by sum(Transaction_Amount) desc)as top_3
+        from bank_analysis
+        group by Transaction_Type,Customer_Name
+        )as segment
+where top_3 <= 3
+order by Transaction_Type,top_3;
