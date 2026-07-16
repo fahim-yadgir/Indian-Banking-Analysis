@@ -19,3 +19,9 @@ order by Transaction_Amount desc;
 
 select avg(Annual_Income_INR )from 
 bank_analysis;
+
+SET SQL_SAFE_UPDATES = 0;
+
+update bank_analysis
+set
+Transaction_Date = str_to_date(Transaction_Date,'%d-%m-%Y');
