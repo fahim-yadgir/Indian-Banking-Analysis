@@ -32,10 +32,28 @@ from bank_analysis
 where Transaction_Date between '2022-01-01' and '2022-12-31';
 
 select * from
-(select Customer_Name,Transaction_Type,sum(Transaction_Amount) as total_Transaction_Amount,
+(select Customer_Name,Transaction_Type,round(sum(Transaction_Amount),2) as total_Transaction_Amount,
 		dense_rank() over(partition by Transaction_Type order by sum(Transaction_Amount) desc)as top_3
         from bank_analysis
         group by Transaction_Type,Customer_Name
         )as segment
 where top_3 <= 3
 order by Transaction_Type,top_3;
+
+select * from bank_analysis
+where Loan_Status = 'Approved';
+
+select round(sum(Transaction_Amount),2)as via_UPI
+from bank_analysis
+where Transaction_Type = 'UPI';
+
+select min(Credit_Score)as min_Credit_Score , max(Credit_Score)as max_Credit_Score
+from bank_analysis;
+
+select customer_name,Transaction_Amount,Transaction_Type,age
+from bank_analysis
+where age > 60;
+
+select transaction_amount,customer_name
+from bank_analysis
+where Transaction_Date BETWEEN '2024-01-01' AND '2024-12-31';
