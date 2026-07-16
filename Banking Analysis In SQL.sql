@@ -99,7 +99,7 @@ from bank_analysis
 group by region)as segment
 order by max_count desc;
 
-select Transaction_Type,count(*)as total_count
+select customer_id,count(distinct loan_type)as more_than_1
 from bank_analysis
-group by Transaction_Type;
-
+group by customer_id
+having count(distinct loan_type) >1;
