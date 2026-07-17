@@ -103,3 +103,6 @@ select customer_id,count(distinct loan_type)as more_than_1
 from bank_analysis
 group by customer_id
 having count(distinct loan_type) >1;
+
+select * from bank_analysis
+where Bank_Name = 'SBI';
