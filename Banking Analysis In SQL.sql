@@ -113,3 +113,4 @@ select Customer_Name,
         Transaction_Type
 from bank_analysis
 where Transaction_Type = 'UPI' and Account_Type = 'Current';
+
