@@ -106,3 +106,10 @@ having count(distinct loan_type) >1;
 
 select * from bank_analysis
 where Bank_Name = 'SBI';
+
+select Customer_Name,
+		Account_Type,
+        Transaction_Amount,
+        Transaction_Type
+from bank_analysis
+where Transaction_Type = 'UPI' and Account_Type = 'Current';
