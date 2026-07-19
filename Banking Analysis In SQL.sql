@@ -114,3 +114,10 @@ select Customer_Name,
 from bank_analysis
 where Transaction_Type = 'UPI' and Account_Type = 'Current';
 
+select Customer_Name,
+		Account_Type,
+        Transaction_Amount,
+        Transaction_Type,
+        sum(Transaction_Amount) over(order by customer_name)as runnig_amount
+from bank_analysis
+where Transaction_Type = 'NEFT' and Account_Type = 'Fixed Deposit';
