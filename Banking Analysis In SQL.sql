@@ -118,6 +118,6 @@ select Customer_Name,
 		Account_Type,
         Transaction_Amount,
         Transaction_Type,
-        sum(Transaction_Amount) over(order by customer_name)as runnig_amount
+        round(sum(Transaction_Amount) over(order by customer_name),2)as runnig_amount
 from bank_analysis
 where Transaction_Type = 'NEFT' and Account_Type = 'Fixed Deposit';
