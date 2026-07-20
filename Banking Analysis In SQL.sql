@@ -138,3 +138,18 @@ from bank_analysis
 group by customer_name
 order by total_transaction desc
 limit 10;
+
+select loan_type , count(*)as count_loan_type
+from bank_analysis
+group by loan_type 
+order by count_loan_type desc
+limit 2;
+
+select loan_type,avg(loan_amount)as avg_loan_amount
+from bank_analysis
+group by loan_type;
+
+select bank_name,sum(transaction_amount),
+rank() over(order by sum(transaction_amount) desc)as Rank_t
+from bank_analysis
+group by bank_name;
