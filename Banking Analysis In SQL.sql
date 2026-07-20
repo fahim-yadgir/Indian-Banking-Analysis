@@ -121,3 +121,14 @@ select Customer_Name,
         round(sum(Transaction_Amount) over(order by customer_name),2)as runnig_amount
 from bank_analysis
 where Transaction_Type = 'NEFT' and Account_Type = 'Fixed Deposit';
+
+select Bank_Name,sum(Transaction_Amount)
+from bank_analysis
+where Transaction_Amount = (select max(Transaction_Amount)from bank_analysis)
+group by Bank_Name;
+
+select Bank_Name,round(sum(Transaction_Amount),2)as Max_transaction
+from bank_analysis
+group by Bank_Name
+order by Max_transaction desc
+limit 1;
