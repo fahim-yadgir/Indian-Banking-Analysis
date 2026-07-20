@@ -131,4 +131,10 @@ select Bank_Name,round(sum(Transaction_Amount),2)as Max_transaction
 from bank_analysis
 group by Bank_Name
 order by Max_transaction desc
-limit 1;
+limit 2;
+
+select Customer_Name , round(sum(Transaction_Amount),2)as total_transaction , count(*)as transaction_count , sum(loan_amount)as total_loan_amount
+from bank_analysis
+group by customer_name
+order by total_transaction desc
+limit 10;
