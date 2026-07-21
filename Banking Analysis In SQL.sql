@@ -153,3 +153,34 @@ select bank_name,round(sum(transaction_amount),2)total_transaction,
 rank() over(order by sum(transaction_amount) desc)as Rank_t
 from bank_analysis
 group by bank_name;
+
+select customer_name,Account_Type,Transaction_Date,Transaction_Amount,
+		round(sum(Transaction_Amount) over(order by Transaction_Date),2)as runnig_transaction
+from bank_analysis;
+
+select Occupation,avg(transaction_amount)as avg_transaction
+from bank_analysis
+group by Occupation
+order by avg_transaction desc
+limit 5;
+
+select city , max(credit_score)as max_score
+from bank_analysis
+group by city;
+
+SELECT Region,
+       Bank_Name,
+       Total_Transaction
+FROM
+(
+    SELECT Region,
+           Bank_Name,
+           SUM(Transaction_Amount) AS Total_Transaction,
+           DENSE_RANK() OVER (
+               PARTITION BY Region
+               ORDER BY SUM(Transaction_Amount) DESC
+           ) AS Rank_No
+    FROM bank_analysis
+    GROUP BY Region, Bank_Name
+) AS ranked_banks
+WHERE Rank_No = 1;
