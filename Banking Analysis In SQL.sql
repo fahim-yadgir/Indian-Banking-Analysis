@@ -149,7 +149,7 @@ select loan_type,avg(loan_amount)as avg_loan_amount
 from bank_analysis
 group by loan_type;
 
-select bank_name,sum(transaction_amount),
+select bank_name,round(sum(transaction_amount),2)total_transaction,
 rank() over(order by sum(transaction_amount) desc)as Rank_t
 from bank_analysis
 group by bank_name;
