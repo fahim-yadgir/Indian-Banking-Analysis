@@ -184,3 +184,8 @@ FROM
     GROUP BY Region, Bank_Name
 ) AS ranked_banks
 WHERE Rank_No = 1;
+
+select month(Transaction_Date)as dates,sum(Transaction_Amount)as trend
+from bank_analysis
+group by month(Transaction_Date)
+order by dates;
