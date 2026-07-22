@@ -190,3 +190,12 @@ from bank_analysis
 group by month(Transaction_Date)
 order by dates;
 
+select Region,Bank_name,total_transaction
+from
+(
+select Region,Bank_name,sum(transaction_amount)as total_transaction,
+dense_rank() over(partition by region order by sum(transaction_amount)desc )as rank_no
+group by Region,Bank_name
+)
+as ranked_banks
+where rank_no = 1;
