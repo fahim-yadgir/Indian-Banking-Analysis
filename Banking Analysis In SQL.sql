@@ -185,7 +185,8 @@ FROM
 ) AS ranked_banks
 WHERE Rank_No = 1;
 
-select month(Transaction_Date)as dates,sum(Transaction_Amount)as trend
+select month(Transaction_Date)as dates,round(sum(Transaction_Amount),2)as trend
 from bank_analysis
 group by month(Transaction_Date)
 order by dates;
+
