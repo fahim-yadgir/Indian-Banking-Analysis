@@ -196,3 +196,15 @@ where loan_type is not null
 group by customer_name
 having count(distinct loan_type)>1;
 
+select customer_name,credit_score,branch,
+case when Credit_Score <= 250 then 'Low'
+when Credit_Score <= 500 then 'Medium'
+when Credit_Score <=1000 then 'High'
+end CS_Distribution
+from bank_analysis;
+
+select region,
+sum(case when Fraud_Flag = 'Yes' then 1 end)as fraus_Yes,
+sum(case when Fraud_Flag = 'No' then 1 end)as fraus_no
+from bank_analysis
+group by region;
