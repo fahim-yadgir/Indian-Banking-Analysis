@@ -208,3 +208,8 @@ sum(case when Fraud_Flag = 'Yes' then 1 end)as fraus_Yes,
 sum(case when Fraud_Flag = 'No' then 1 end)as fraus_no
 from bank_analysis
 group by region;
+
+select bank_name ,loan_type,count(*)as loantype
+from bank_analysis
+group by bank_name,loan_type
+order by bank_name;
