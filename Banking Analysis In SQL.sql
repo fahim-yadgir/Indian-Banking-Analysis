@@ -213,3 +213,15 @@ select bank_name ,loan_type,count(*)as loantype
 from bank_analysis
 group by bank_name,loan_type
 order by bank_name;
+
+
+select customer_name,loan_status,loan_amount
+from
+(
+select customer_name,loan_status,sum(loan_amount)as loan_amount,
+	dense_rank() over(partition by loan_status order by sum(loan_amount)desc)as rank_no
+    from bank_analysis
+    group by customer_name,loan_status
+)as ranks
+where rank_no <= 3 and loan_status != 'Not Applied'
+order by loan_status,rank_no,loan_amount desc;
