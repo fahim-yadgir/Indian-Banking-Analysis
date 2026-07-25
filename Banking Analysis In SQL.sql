@@ -229,3 +229,13 @@ select Transaction_Date,Customer_Name,
 		round(sum(Transaction_Amount) over(order by Transaction_Date),2)as runnig_transaction
 from bank_analysis
 where Transaction_Date between '2022-01-01' and '2022-12-31';
+
+select customer_name , gender , Transaction_Amount
+from (
+select customer_name , gender , sum(Transaction_Amount) as Transaction_Amount,
+		dense_rank() over(partition by gender order by sum(Transaction_Amount) desc)as ranks
+        from bank_analysis
+        group by customer_name , gender 
+)as tb
+where ranks <= 3
+order by gender,ranks;
