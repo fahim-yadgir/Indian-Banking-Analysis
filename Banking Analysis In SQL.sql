@@ -214,14 +214,14 @@ from bank_analysis
 group by bank_name,loan_type
 order by bank_name;
 
-
-select customer_name,loan_status,loan_amount
-from
+select customer_name,Loan_Status,Loan_Amount
+from 
 (
-select customer_name,loan_status,sum(loan_amount)as loan_amount,
-	dense_rank() over(partition by loan_status order by sum(loan_amount)desc)as rank_no
-    from bank_analysis
-    group by customer_name,loan_status
-)as ranks
-where rank_no <= 3 and loan_status != 'Not Applied'
-order by loan_status,rank_no,loan_amount desc;
+select customer_name,Loan_Status,sum(Loan_Amount) as loan_amount,
+		dense_rank() over(partition by Loan_Status order by sum(Loan_Amount) desc)as ranks
+        from bank_analysis
+        group by customer_name,Loan_Status
+)as segment
+where ranks<=3 and Loan_Status != 'Not Applied'
+order by Loan_Status,ranks;
+
