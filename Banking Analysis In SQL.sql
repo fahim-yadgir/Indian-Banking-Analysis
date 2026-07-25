@@ -225,3 +225,7 @@ select customer_name,Loan_Status,sum(Loan_Amount) as loan_amount,
 where ranks<=3 and Loan_Status != 'Not Applied'
 order by Loan_Status,ranks;
 
+select Transaction_Date,Customer_Name,
+		round(sum(Transaction_Amount) over(order by Transaction_Date),2)as runnig_transaction
+from bank_analysis
+where Transaction_Date between '2022-01-01' and '2022-12-31';
