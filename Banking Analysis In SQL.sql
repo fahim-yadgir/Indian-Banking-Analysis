@@ -239,3 +239,23 @@ select customer_name , gender , sum(Transaction_Amount) as Transaction_Amount,
 )as tb
 where ranks <= 3
 order by gender,ranks;
+
+delimiter $$
+create procedure Change_fraud_flag(
+in t_id varchar(50) ,
+in f_flag varchar(50)
+)
+begin 
+update bank_analysis 
+set Fraud_Flag = f_flag
+where Transaction_ID = t_id;
+end $$
+delimiter ;
+
+drop procedure bank_analysis;
+
+call Change_fraud_flag ('TXN0006232','Yes');
+
+SET SQL_SAFE_UPDATES = 0;
+
+select * from bank_analysis;
