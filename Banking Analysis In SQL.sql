@@ -259,3 +259,27 @@ call Change_fraud_flag ('TXN0006232','Yes');
 SET SQL_SAFE_UPDATES = 0;
 
 select * from bank_analysis;
+
+create view Red_flag as
+(
+select * from bank_analysis
+where Fraud_Flag = 'Yes'
+);
+
+select * from Red_flag;
+
+create view South_region as
+(
+select * from bank_analysis
+where Region =  'South'
+);
+
+select * from South_region;
+
+create view North_region as
+(
+select * from bank_analysis
+where Region =  'North'
+);
+
+select * from North_region;
