@@ -283,3 +283,23 @@ where Region =  'North'
 );
 
 select * from North_region;
+
+
+alter table bank_analysis
+rename column Annual_Income_INR to Annual_Income;
+
+delimiter $$
+
+create procedure Change_acount_type
+(
+in t_id text,
+in b_name text
+)
+begin
+update bank_analysis
+set Bank_Name = b_name
+where Transaction_ID = t_id;
+select * from bank_analysis;
+end$$
+
+call Change_acount_type ('TXN0006232','HDFC Bank');
