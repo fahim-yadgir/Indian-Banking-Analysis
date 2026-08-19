@@ -303,3 +303,20 @@ select * from bank_analysis;
 end$$
 
 call Change_acount_type ('TXN0006232','HDFC Bank');
+
+delimiter $$
+create procedure Change_customer_name
+(
+in customer_id text,
+in customer_name text
+)
+begin 
+update bank_analysis
+set Customer_Name = customer_name
+where Customer_ID = customer_id;
+select * from bank_analysis;
+end $$
+
+call Change_customer_name('CUST01567','Fahim Yadgir');
+
+procedure Change_customer_name rollback;
