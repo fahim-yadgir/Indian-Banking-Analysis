@@ -1,6 +1,7 @@
 create database Bank;
 use Bank;
 
+
 select * from bank_analysis
 where Fraud_Flag = 'Yes';
 
@@ -320,3 +321,12 @@ end $$
 call Change_customer_name('CUST01567','Fahim Yadgir');
 
 procedure Change_customer_name rollback;
+
+select customer_id , count(*)as total_count
+from bank_analysis
+group by customer_id;
+
+create view gender_male as
+(
+in 
+)
