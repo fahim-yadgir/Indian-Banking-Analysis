@@ -326,7 +326,24 @@ select customer_id , count(*)as total_count
 from bank_analysis
 group by customer_id;
 
-create view gender_male as
+delimiter $$
+create procedure change_customer_name
 (
-in 
+in c_id text,
+in c_name text
 )
+begin
+update bank_analysis
+set Customer_Name = c_name
+where Customer_ID = c_id;
+select * from bank_analysis;
+end $$
+delimiter ;
+
+start transaction;
+call change_customer_name('CUST01567','Fahim Yadgir');
+
+select Customer_ID , count(*)as total_Count
+from bank_analysis
+group by Customer_ID
+order by total_Count desc;
