@@ -347,3 +347,8 @@ select Customer_ID , count(*)as total_Count
 from bank_analysis
 group by Customer_ID
 order by total_Count desc;
+
+select Transaction_ID , count(*)as total_Count
+from bank_analysis
+group by Transaction_ID
+order by total_Count desc;
