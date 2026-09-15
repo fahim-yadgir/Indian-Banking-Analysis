@@ -352,3 +352,17 @@ select Transaction_ID , count(*)as total_Count
 from bank_analysis
 group by Transaction_ID
 order by total_Count desc;
+
+create view age_group as
+(
+select * 
+,
+case 
+	when age <= 20 then "Young"
+    when age <=30 then "Adult"
+    when age <= 40 then "Middel age"
+end as age_group
+from bank_analysis
+);
+
+select * from age_group;
