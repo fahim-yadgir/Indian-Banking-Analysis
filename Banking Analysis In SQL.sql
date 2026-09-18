@@ -366,3 +366,25 @@ from bank_analysis
 );
 
 select * from age_group;
+
+delimiter $$
+create procedure change_gender
+(
+in t_id text,
+in g_cust text
+)
+begin 
+update bank_analysis
+set Gender = g_cust
+where Transaction_ID = t_id;
+select * from bank_analysis;
+end$$
+
+start transaction;
+call change_gender("TXN0006232","Male");
+commit;
+
+select Transaction_ID ,count(*)as total_count
+from bank_analysis
+group by Transaction_ID
+order by total_count desc;
