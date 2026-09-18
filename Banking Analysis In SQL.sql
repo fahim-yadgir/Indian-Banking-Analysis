@@ -381,7 +381,7 @@ select * from bank_analysis;
 end$$
 
 start transaction;
-call change_gender("TXN0006232","Male");
+call change_gender("TXN0004726","female");
 commit;
 
 select Transaction_ID ,count(*)as total_count
