@@ -388,3 +388,20 @@ select Transaction_ID ,count(*)as total_count
 from bank_analysis
 group by Transaction_ID
 order by total_count desc;
+
+select max(Annual_Income_INR)as max_anual_income
+from bank_analysis;
+
+select customer_name,age as max_age
+from bank_analysis
+where age = (select max(age)from bank_analysis);
+
+select customer_name , age
+from bank_analysis
+where age = (select max(age)from bank_analysis
+			where age < (select max(age)from bank_analysis));
+            
+select count(age)as total_count
+from bank_analysis
+where age = 75;
+
