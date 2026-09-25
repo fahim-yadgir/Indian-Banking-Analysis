@@ -405,3 +405,11 @@ select count(age)as total_count
 from bank_analysis
 where age = 75;
 
+select Customer_Name , gender , age ,Annual_Income_INR,rank() over(order by Annual_Income_INR desc)as rank_cust
+from bank_analysis;
+
+select Customer_Name, Occupation , Bank_Name , Annual_Income_INR ,Transaction_Date as data_of_transaction,sum(Transaction_Amount)as total_transaction 
+from bank_analysis
+where Transaction_Amount > 45000 and Transaction_Date between '01-01-2022' and '06-12-2025'
+group by Customer_Name, Occupation , Bank_Name , Annual_Income_INR,Transaction_Date 
+order by data_of_transaction asc;
