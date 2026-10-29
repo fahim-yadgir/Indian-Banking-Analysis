@@ -413,3 +413,17 @@ from bank_analysis
 where Transaction_Amount > 45000 and Transaction_Date between '01-01-2022' and '06-12-2025'
 group by Customer_Name, Occupation , Bank_Name , Annual_Income_INR,Transaction_Date 
 order by data_of_transaction asc;
+
+select * from bank_analysis;
+
+select City , sum(Loan_Amount)as total_loan_amount
+from bank_analysis
+group by City;
+
+create view Pune_data as
+(
+select * ,sum(Loan_amount) over(order by Transaction_Date)as runnig_laon_amount , sum(Transaction_Amount) over(order by Transaction_Date)as runnig_transaction_amount
+from bank_analysis
+)
+
+select * from Pune_data;
